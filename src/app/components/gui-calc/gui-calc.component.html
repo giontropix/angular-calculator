@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <h2 class="result">{{ display }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-3 p-0" *ngFor="let button of buttons">
+                    <button
+                        type="button"
+                        *ngIf="+button; else elseBlock"
+                        class="myButton btn-secondary"
+                        (click)="addToDIsplay(button); isFocused = false"
+                    >
+                        {{ button }}
+                    </button>
+                    <ng-template #elseBlock>
+                        <button
+                            type="button"
+                            *ngIf="button === '='; else elseBlock2"
+                            class="myButton btn-primary"
+                            (click)="getOperation(); isFocused = true"
+                        >
+                            {{ button }}
+                        </button>
+                        <ng-template #elseBlock2>
+                            <button
+                                type="button"
+                                class="myButton btn-success"
+                                (click)="
+                                    addToDIsplay(button); isFocused = false
+                                "
+                            >
+                                {{ button }}
+                            </button>
+                        </ng-template>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-danger" (click)="resetDiplay()">
+                Reset
+            </button>
+        </div>
+    </div>
+</div>
